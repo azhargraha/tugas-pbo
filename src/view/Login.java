@@ -21,7 +21,7 @@ public class Login extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordTextField = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
@@ -105,14 +105,18 @@ public class Login extends javax.swing.JFrame {
         jLabel7.setText("Password");
         jPanel5.add(jLabel7, java.awt.BorderLayout.PAGE_START);
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(68, 68, 68));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPasswordField1.setMinimumSize(new java.awt.Dimension(3, 34));
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(78, 34));
-        jPanel5.add(jPasswordField1, java.awt.BorderLayout.PAGE_END);
+        passwordTextField.setBackground(new java.awt.Color(255, 255, 255));
+        passwordTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        passwordTextField.setForeground(new java.awt.Color(68, 68, 68));
+        passwordTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        passwordTextField.setMinimumSize(new java.awt.Dimension(3, 34));
+        passwordTextField.setPreferredSize(new java.awt.Dimension(78, 34));
+        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(passwordTextField, java.awt.BorderLayout.PAGE_END);
 
         jPanel6.add(jPanel5, java.awt.BorderLayout.CENTER);
 
@@ -128,7 +132,6 @@ public class Login extends javax.swing.JFrame {
         usernameTextField.setBackground(new java.awt.Color(255, 255, 255));
         usernameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         usernameTextField.setForeground(new java.awt.Color(68, 68, 68));
-        usernameTextField.setText("Masukkan username anda");
         usernameTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         usernameTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         usernameTextField.setMinimumSize(new java.awt.Dimension(3, 34));
@@ -217,6 +220,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextFieldActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -244,8 +251,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton loginSubmit;
+    private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
