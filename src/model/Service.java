@@ -5,8 +5,9 @@ public class Service implements ServiceStatus {
     private int serviceId, harga;
     private Client client;
     private Technician technician;
+    private float rating;
 
-    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, Client client, Technician technician) {
+    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, Client client, Technician technician, float rating) {
         this.type = type;
         this.problem = problem;
         this.serviceStatus = serviceStatus;
@@ -14,6 +15,7 @@ public class Service implements ServiceStatus {
         this.harga = harga;
         this.client = client;
         this.technician = technician;
+        this.rating = rating;
     }
 
     public String getType() {
@@ -71,10 +73,16 @@ public class Service implements ServiceStatus {
     public void setTechnician(Technician technician) {
         this.technician = technician;
     }
-    
-    public void rating() {
-        
+
+    public float getRating() {
+        return rating;
     }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    
+    
     
     public void summary() {
         

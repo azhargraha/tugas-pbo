@@ -1,5 +1,7 @@
 package model;
 
+import java.time.format.ResolverStyle;
+
 public class Technician {
     private int jobFinished, pemasukan;
     private String mastery;
@@ -65,7 +67,13 @@ public class Technician {
     }
     
     public float avgRating(Service[] services) {
-       return (float) 0.1; 
+       float jumlah = 0;
+       float count = 0;
+       for(int i = 0; i < services.length; i++){
+           jumlah = jumlah + services[i].getRating();
+           count++;
+       }
+       return jumlah/count;
     }
     
     public void lihatProfil() {
