@@ -1,6 +1,7 @@
 package model;
 
 import java.time.format.ResolverStyle;
+import java.util.Scanner;
 
 public class Technician {
     private int jobFinished, pemasukan;
@@ -76,12 +77,11 @@ public class Technician {
        return jumlah/count;
     }
     
-    public void lihatProfil() {
-        
-    }
-    
     public void addCertificate(String[] certificate) {
-        
+        int i = certificate.length;
+        Scanner input = new Scanner(System.in);
+        String id = input.nextLine();
+        certificate[i] = id;
     }
         
 }
