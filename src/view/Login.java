@@ -1,7 +1,13 @@
 package view;
+import controller.Connections;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Login extends javax.swing.JFrame {
-
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     public Login() {
         initComponents();
     }
@@ -154,6 +160,11 @@ public class Login extends javax.swing.JFrame {
         loginSubmit.setMaximumSize(new java.awt.Dimension(39, 34));
         loginSubmit.setMinimumSize(new java.awt.Dimension(39, 34));
         loginSubmit.setPreferredSize(new java.awt.Dimension(39, 34));
+        loginSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginSubmitActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -223,6 +234,33 @@ public class Login extends javax.swing.JFrame {
     private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTextFieldActionPerformed
+
+    private void loginSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginSubmitActionPerformed
+        String uname = usernameTextField.getText();
+        String pword = passwordTextField.getText();
+        if(uname.equals("") || pword.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Some fields are empty", "Error", 1);
+        }else{
+            try{
+                con = Connections.getConnection();
+                pst = con.prepareStatement("select * from account where username=? and password=?");
+		pst.setString(1, uname);
+                pst.setString(2, pword);
+		rs = pst.executeQuery();
+                if(rs.next()){
+                    String s1 = rs.getString("accType");
+                    if(s1.equalsIgnoreCase("client")){
+                        JOptionPane.showMessageDialog(rootPane, "You are Client", "Client Dashbord", 1);
+                    }
+                    if(s1.equalsIgnoreCase("technician")){
+                        JOptionPane.showMessageDialog(rootPane, "You are technician", "Technician Dashbord", 1);
+                    }
+                }
+            }catch(Exception ex){
+                System.out.println(""+ex);
+            }
+        }
+    }//GEN-LAST:event_loginSubmitActionPerformed
 
     public static void main(String args[]) {
 
