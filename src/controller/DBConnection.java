@@ -18,7 +18,7 @@ public class DBConnection {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/servicedb", "root", "");
-        }catch(SQLException ex){abv
+        }catch(SQLException ex){
             System.out.println(""+ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);

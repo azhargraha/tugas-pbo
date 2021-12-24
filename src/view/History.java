@@ -1,7 +1,6 @@
 package view;
 
 import com.sun.jdi.connect.spi.Connection;
-import controller.DriverManager;
 
 public class History extends javax.swing.JFrame {
 
