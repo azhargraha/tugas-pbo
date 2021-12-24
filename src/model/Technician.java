@@ -1,8 +1,5 @@
 package model;
 
-import java.time.format.ResolverStyle;
-import java.util.Scanner;
-
 public class Technician {
     private int jobFinished, pemasukan;
     private String mastery;
@@ -68,20 +65,15 @@ public class Technician {
     }
     
     public float avgRating(Service[] services) {
-       float jumlah = 0;
-       float count = 0;
-       for(int i = 0; i < services.length; i++){
-           jumlah = jumlah + services[i].getRating();
-           count++;
-       }
-       return jumlah/count;
+       return (float) 0.1; 
+    }
+    
+    public void lihatProfil() {
+        
     }
     
     public void addCertificate(String[] certificate) {
-        int i = certificate.length;
-        Scanner input = new Scanner(System.in);
-        String id = input.nextLine();
-        certificate[i] = id;
+        
     }
         
 }
