@@ -1,7 +1,16 @@
 package view;
 
-public class Login extends javax.swing.JFrame {
+import controller.DBConnection;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Account;
 
+public class Login extends javax.swing.JFrame {
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     public Login() {
         initComponents();
         registPanel.setVisible(false);
@@ -98,7 +107,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Membantu masyarakat yang memiliki kendala dirumahnya untuk mendatangkan teknisi");
         jLabel3.setMaximumSize(new java.awt.Dimension(700, 20));
         jLabel3.setMinimumSize(new java.awt.Dimension(700, 20));
-        jLabel3.setPreferredSize(null);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 580, 20));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -108,7 +116,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("yang memiliki ahli di bidang terkait.");
         jLabel4.setMaximumSize(new java.awt.Dimension(556, 20));
         jLabel4.setMinimumSize(new java.awt.Dimension(556, 20));
-        jLabel4.setPreferredSize(null);
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 540, 20));
 
         jPanel2.add(jPanel1);
@@ -179,11 +186,6 @@ public class Login extends javax.swing.JFrame {
         registNameTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registNameTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registNameTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registNameTextFieldActionPerformed(evt);
-            }
-        });
         jPanel15.add(registNameTextField, java.awt.BorderLayout.CENTER);
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -202,11 +204,6 @@ public class Login extends javax.swing.JFrame {
         registUsernameTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registUsernameTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registUsernameTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registUsernameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registUsernameTextFieldActionPerformed(evt);
-            }
-        });
         jPanel16.add(registUsernameTextField, java.awt.BorderLayout.CENTER);
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
@@ -225,11 +222,6 @@ public class Login extends javax.swing.JFrame {
         registPasswordTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registPasswordTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registPasswordTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registPasswordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registPasswordTextFieldActionPerformed(evt);
-            }
-        });
         jPanel19.add(registPasswordTextField, java.awt.BorderLayout.CENTER);
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
@@ -248,11 +240,6 @@ public class Login extends javax.swing.JFrame {
         registAlamatTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registAlamatTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registAlamatTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registAlamatTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registAlamatTextFieldActionPerformed(evt);
-            }
-        });
         jPanel21.add(registAlamatTextField, java.awt.BorderLayout.CENTER);
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
@@ -302,11 +289,6 @@ public class Login extends javax.swing.JFrame {
         registNoTelpTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registNoTelpTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registNoTelpTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registNoTelpTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registNoTelpTextFieldActionPerformed(evt);
-            }
-        });
         jPanel23.add(registNoTelpTextField, java.awt.BorderLayout.CENTER);
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,11 +307,6 @@ public class Login extends javax.swing.JFrame {
         registEmailTextField.setMaximumSize(new java.awt.Dimension(2147483647, 14));
         registEmailTextField.setMinimumSize(new java.awt.Dimension(3, 34));
         registEmailTextField.setPreferredSize(new java.awt.Dimension(150, 34));
-        registEmailTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registEmailTextFieldActionPerformed(evt);
-            }
-        });
         jPanel24.add(registEmailTextField, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout registPanelLayout = new javax.swing.GroupLayout(registPanel);
@@ -453,6 +430,11 @@ public class Login extends javax.swing.JFrame {
         loginSubmit.setMaximumSize(new java.awt.Dimension(39, 34));
         loginSubmit.setMinimumSize(new java.awt.Dimension(39, 34));
         loginSubmit.setPreferredSize(new java.awt.Dimension(39, 34));
+        loginSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginSubmitActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -554,8 +536,59 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_switchToLoginButtonButtonActionPerformed
 
+    public boolean checkUsername(String username){
+        boolean userExist = false;
+        try{
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("select * from account where username=?");
+            pst.setString(1, username);
+            rs = pst.executeQuery();
+            if (rs.next()){
+                userExist = true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return userExist; 
+    }
+    
     private void registSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registSubmitActionPerformed
-        // TODO add your handling code here:
+        Account acc = new Account("", registUsernameTextField.getText(), registPasswordTextField.getText(),
+                                    registNameTextField.getText(), registEmailTextField.getText(), 
+                                    registAlamatTextField.getText(), registNoTelpTextField.getText());
+        if(acc.getUsername().isEmpty() || acc.getPassword().isEmpty() || acc.getNamaLengkap().isEmpty() 
+                || acc.getEmail().isEmpty() || acc.getAlamat().isEmpty() || acc.getNoTelp().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Some fields are empty", "Error", 1);
+        }else if(checkUsername(acc.getUsername())){
+            JOptionPane.showMessageDialog(rootPane, "Username already taken", "Error", 1);
+        }else {
+            try{
+                con = DBConnection.getConnection();
+                pst = con.prepareStatement("insert into account (id, username, password, namaLengkap, email, alamat, noTelp, accType) values (NULL,?,?,?,?,?,?,?)");
+                pst.setString(1, acc.getUsername());
+                pst.setString(2, acc.getPassword());
+                pst.setString(3, acc.getNamaLengkap());
+                pst.setString(4, acc.getEmail());
+                pst.setString(5, acc.getAlamat());
+                pst.setString(6, acc.getNoTelp());
+                if(registClientRadio.isSelected()){
+                    pst.setString(7, "Client");
+                }else{
+                    pst.setString(7, "Technician");
+                }
+                if(pst.executeUpdate() > 0)
+                {
+                JOptionPane.showMessageDialog(null, "New User Add");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_registSubmitActionPerformed
 
     private void switchToRegistButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_switchToRegistButtonMouseClicked
@@ -568,29 +601,32 @@ public class Login extends javax.swing.JFrame {
         loginPanel.setVisible(true);
     }//GEN-LAST:event_switchToLoginButtonMouseClicked
 
-    private void registNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registNameTextFieldActionPerformed
-
-    private void registUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registUsernameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registUsernameTextFieldActionPerformed
-
-    private void registPasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registPasswordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registPasswordTextFieldActionPerformed
-
-    private void registAlamatTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registAlamatTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registAlamatTextFieldActionPerformed
-
-    private void registNoTelpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registNoTelpTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registNoTelpTextFieldActionPerformed
-
-    private void registEmailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registEmailTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registEmailTextFieldActionPerformed
+    private void loginSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginSubmitActionPerformed
+        String uname = loginUsernameTextField.getText();
+        String pword = loginPasswordTextField.getText();
+        if(uname.equals("") || pword.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Some fields are empty", "Error", 1);
+        }else{
+            try{
+                con = DBConnection.getConnection();
+                pst = con.prepareStatement("select * from account where username=? and password=?");
+		pst.setString(1, uname);
+                pst.setString(2, pword);
+		rs = pst.executeQuery();
+                if(rs.next()){
+                    String s1 = rs.getString("accType");
+                    if(s1.equalsIgnoreCase("client")){
+                        JOptionPane.showMessageDialog(rootPane, "You are Client", "Client Dashbord", 1);
+                    }
+                    if(s1.equalsIgnoreCase("technician")){
+                        JOptionPane.showMessageDialog(rootPane, "You are technician", "Technician Dashbord", 1);
+                    }
+                }
+            }catch(Exception ex){
+                System.out.println(""+ex);
+            }
+        }
+    }//GEN-LAST:event_loginSubmitActionPerformed
 
     public static void main(String args[]) {
 
@@ -603,13 +639,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane authLayeredPanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -628,7 +658,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -639,19 +668,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel loginPanel;
-    private javax.swing.JPanel loginPanel1;
     private javax.swing.JPasswordField loginPasswordTextField;
     private javax.swing.JButton loginSubmit;
-    private javax.swing.JButton loginSubmit1;
     private javax.swing.JTextField loginUsernameTextField;
-    private javax.swing.JPasswordField passwordTextField1;
     private javax.swing.JTextField registAlamatTextField;
     private javax.swing.JRadioButton registClientRadio;
     private javax.swing.JTextField registEmailTextField;
@@ -665,6 +688,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField registUsernameTextField;
     private javax.swing.JButton switchToLoginButton;
     private javax.swing.JButton switchToRegistButton;
-    private javax.swing.JTextField usernameTextField1;
     // End of variables declaration//GEN-END:variables
 }

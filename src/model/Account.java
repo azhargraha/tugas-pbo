@@ -2,9 +2,9 @@ package model;
 
 public class Account {
     private String id, username, password, namaLengkap, email, alamat;
-    private int noTelp;
+    private String noTelp;
 
-    public Account(String id, String username, String password, String namaLengkap, String email, String alamat, int noTelp) {
+    public Account(String id, String username, String password, String namaLengkap, String email, String alamat, String noTelp) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -62,11 +62,11 @@ public class Account {
         this.alamat = alamat;
     }
 
-    public int getNoTelp() {
+    public String getNoTelp() {
         return noTelp;
     }
 
-    public void setNoTelp(int noTelp) {
+    public void setNoTelp(String noTelp) {
         this.noTelp = noTelp;
     }
     
