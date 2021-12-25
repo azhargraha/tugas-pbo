@@ -615,11 +615,12 @@ public class Login extends javax.swing.JFrame {
 		rs = pst.executeQuery();
                 if(rs.next()){
                     String s1 = rs.getString("accType");
-                    if(s1.equalsIgnoreCase("client")){
-                        JOptionPane.showMessageDialog(rootPane, "You are Client", "Client Dashbord", 1);
-                    }
-                    if(s1.equalsIgnoreCase("technician")){
-                        JOptionPane.showMessageDialog(rootPane, "You are technician", "Technician Dashbord", 1);
+                    Account user = new Account(rs.getString("id"), rs.getString("username"), rs.getString("password"), 
+                                               rs.getString("namaLengkap"), rs.getString("email"), rs.getString("alamat"), rs.getString("noTelp"));
+                    if(s1.equalsIgnoreCase("client") || s1.equalsIgnoreCase("Technician")){
+                        Dashboard dFrame = new Dashboard(user, s1);
+                        dispose();
+                        dFrame.setVisible(true);
                     }
                 }
             }catch(Exception ex){
