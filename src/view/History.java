@@ -27,7 +27,7 @@ public class History extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         historyTable.setBackground(new java.awt.Color(255, 255, 255));
-        historyTable.setForeground(new java.awt.Color(255, 255, 255));
+        historyTable.setForeground(new java.awt.Color(68, 68, 68));
         historyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

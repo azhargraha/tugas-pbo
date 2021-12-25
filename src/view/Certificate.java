@@ -338,6 +338,7 @@ public class Certificate extends javax.swing.JFrame {
         int returnVal = UploadWindow.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = UploadWindow.getSelectedFile();
+            filenameLabel.setText(file.getAbsolutePath());
         } else {
             System.out.println("File access cancelled by user.");
         }
