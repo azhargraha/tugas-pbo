@@ -4,7 +4,7 @@ import view.*;
 
 public class TubesPBO {
     public static void main(String[] args) {
-        Profile test = new view.Profile();
+        Login test = new view.Login();
         test.show();
     }
 }

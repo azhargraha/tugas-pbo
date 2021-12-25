@@ -74,6 +74,11 @@ public class Dashboard extends javax.swing.JFrame {
         profileButton.setBorder(null);
         profileButton.setBorderPainted(false);
         profileButton.setFocusPainted(false);
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileButtonActionPerformed(evt);
+            }
+        });
 
         serviceButton.setBackground(new java.awt.Color(255, 255, 255));
         serviceButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -82,6 +87,11 @@ public class Dashboard extends javax.swing.JFrame {
         serviceButton.setBorder(null);
         serviceButton.setBorderPainted(false);
         serviceButton.setFocusPainted(false);
+        serviceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviceButtonActionPerformed(evt);
+            }
+        });
 
         paymentButton.setBackground(new java.awt.Color(255, 255, 255));
         paymentButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -90,6 +100,11 @@ public class Dashboard extends javax.swing.JFrame {
         paymentButton.setBorder(null);
         paymentButton.setBorderPainted(false);
         paymentButton.setFocusPainted(false);
+        paymentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentButtonActionPerformed(evt);
+            }
+        });
 
         historyButton.setBackground(new java.awt.Color(255, 255, 255));
         historyButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -98,6 +113,11 @@ public class Dashboard extends javax.swing.JFrame {
         historyButton.setBorder(null);
         historyButton.setBorderPainted(false);
         historyButton.setFocusPainted(false);
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyButtonActionPerformed(evt);
+            }
+        });
 
         addCertificateButton.setBackground(new java.awt.Color(255, 255, 255));
         addCertificateButton.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
@@ -180,6 +200,34 @@ public class Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+        // TODO add your handling code here:
+        Profile obj = new Profile();
+        dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_profileButtonActionPerformed
+
+    private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
+        // TODO add your handling code here:
+        Service obj = new Service();
+        dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_serviceButtonActionPerformed
+
+    private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
+        // TODO add your handling code here:
+        Payment obj = new Payment();
+        dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_paymentButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        // TODO add your handling code here:
+        History obj = new History();
+        dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_historyButtonActionPerformed
 
     public static void main(String args[]) {
 

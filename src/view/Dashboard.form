@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -200,6 +200,9 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="serviceButton">
           <Properties>
@@ -219,6 +222,9 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="serviceButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="paymentButton">
           <Properties>
@@ -238,6 +244,9 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paymentButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="historyButton">
           <Properties>
@@ -257,6 +266,9 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="historyButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addCertificateButton">
           <Properties>
