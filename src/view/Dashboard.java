@@ -30,6 +30,7 @@ public class Dashboard extends javax.swing.JFrame {
         serviceButton = new javax.swing.JButton();
         paymentButton = new javax.swing.JButton();
         historyButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -129,6 +130,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        refreshButton.setBackground(new java.awt.Color(255, 255, 255));
+        refreshButton.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 102, 0));
+        refreshButton.setText("refresh");
+        refreshButton.setBorder(null);
+        refreshButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -141,8 +149,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(136, 136, 136)
                                 .addComponent(jLabel3))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
@@ -166,8 +177,10 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(serviceButton)
                     .addComponent(paymentButton)
                     .addComponent(historyButton))
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addGap(48, 48, 48)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(refreshButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -243,6 +256,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable ongoingServiceTable;
     private javax.swing.JButton paymentButton;
     private javax.swing.JButton profileButton;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton serviceButton;
     // End of variables declaration//GEN-END:variables
 }
