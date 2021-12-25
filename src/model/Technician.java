@@ -3,11 +3,11 @@ package model;
 public class Technician {
     private int jobFinished, pemasukan;
     private String mastery;
-    private String[] certificate;
+    private Certificate[] certificate;
     private float rating;
     private Service[] services;
 
-    public Technician(int jobFinished, int pemasukan, String mastery, String[] certificate, float rating, Service[] services) {
+    public Technician(int jobFinished, int pemasukan, String mastery, Certificate[] certificate, float rating, Service[] services) {
         this.jobFinished = jobFinished;
         this.pemasukan = pemasukan;
         this.mastery = mastery;
@@ -40,11 +40,11 @@ public class Technician {
         this.mastery = mastery;
     }
 
-    public String[] getCertificate() {
+    public Certificate[] getCertificate() {
         return certificate;
     }
 
-    public void setCertificate(String[] certificate) {
+    public void setCertificate(Certificate[] certificate) {
         this.certificate = certificate;
     }
 

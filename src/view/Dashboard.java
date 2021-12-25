@@ -1,9 +1,22 @@
 package view;
 
+import com.mysql.cj.xdevapi.DbDoc;
+import controller.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import model.Account;
+import model.Service;
 
 public class Dashboard extends javax.swing.JFrame {
     private Account user;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     public Dashboard() {
         initComponents();
     }
@@ -49,7 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         ongoingServiceTable.setBackground(new java.awt.Color(255, 255, 255));
         ongoingServiceTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        ongoingServiceTable.setForeground(new java.awt.Color(255, 255, 255));
+        ongoingServiceTable.setForeground(new java.awt.Color(0, 0, 0));
         ongoingServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -136,6 +149,11 @@ public class Dashboard extends javax.swing.JFrame {
         refreshButton.setText("refresh");
         refreshButton.setBorder(null);
         refreshButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -219,7 +237,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
         // TODO add your handling code here:
-        Service obj = new Service();
+        TambahService obj = new TambahService();
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_serviceButtonActionPerformed
@@ -237,6 +255,27 @@ public class Dashboard extends javax.swing.JFrame {
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_historyButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        try{
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("select * from service");
+            rs = pst.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel)ongoingServiceTable.getModel();
+            tm.setRowCount(0);
+            
+            while (rs.next()){
+                Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"), 
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien")};
+                tm.addRow(o);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
     public static void main(String args[]) {
 
