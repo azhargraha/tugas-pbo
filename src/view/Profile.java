@@ -51,6 +51,11 @@ public class Profile extends javax.swing.JFrame {
         backButton.setBorderPainted(false);
         backButton.setFocusPainted(false);
         backButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(68, 68, 68));
@@ -235,6 +240,13 @@ public class Profile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        Dashboard obj = new Dashboard();
+        dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     public static void main(String args[]) {
 
