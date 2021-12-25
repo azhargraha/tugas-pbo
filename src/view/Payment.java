@@ -91,7 +91,7 @@ public class Payment extends javax.swing.JFrame {
         jLabel2.setText("Pilih service yang ingin dibayar :");
 
         jTable2.setBackground(new java.awt.Color(255, 255, 255));
-        jTable2.setForeground(new java.awt.Color(255, 255, 255));
+        jTable2.setForeground(new java.awt.Color(0, 0, 0));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
