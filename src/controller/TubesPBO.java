@@ -1,10 +1,10 @@
 package controller;
 
-import view.Login;
+import view.*;
 
 public class TubesPBO {
     public static void main(String[] args) {
-        Login login = new view.Login();
-        login.show();
+        Profile test = new view.Profile();
+        test.show();
     }
 }
