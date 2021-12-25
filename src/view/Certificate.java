@@ -278,7 +278,7 @@ public class Certificate extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Dashboard obj = new Dashboard();
-        dispose();
+        jDialog1.dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
