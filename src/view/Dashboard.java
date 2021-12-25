@@ -62,7 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         ongoingServiceTable.setBackground(new java.awt.Color(255, 255, 255));
         ongoingServiceTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        ongoingServiceTable.setForeground(new java.awt.Color(255, 255, 255));
+        ongoingServiceTable.setForeground(new java.awt.Color(0, 0, 0));
         ongoingServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
