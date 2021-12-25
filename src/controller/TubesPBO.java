@@ -4,7 +4,7 @@ import view.*;
 
 public class TubesPBO {
     public static void main(String[] args) {
-        Payment test = new view.Payment();
+        Service test = new view.Service();
         test.show();
     }
 }
