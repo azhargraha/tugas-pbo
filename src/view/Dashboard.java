@@ -1,9 +1,20 @@
 package view;
 
-public class Dashboard extends javax.swing.JFrame {
+import model.Account;
 
+public class Dashboard extends javax.swing.JFrame {
+    private Account user;
     public Dashboard() {
         initComponents();
+    }
+    public Dashboard(Account user, String accType){
+        this.user = user;
+        initComponents();
+        if(accType.equalsIgnoreCase("client")){
+            serviceButton.setText("Tambah Service");
+        }else{
+            serviceButton.setText("Tambah Sertifikat");
+        }
     }
 
     @SuppressWarnings("unchecked")
