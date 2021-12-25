@@ -1,8 +1,8 @@
 package view;
 
-public class Service extends javax.swing.JFrame {
+public class TambahService extends javax.swing.JFrame {
 
-    public Service() {
+    public TambahService() {
         initComponents();
     }
 
@@ -32,7 +32,6 @@ public class Service extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(480, 720));
-        setPreferredSize(new java.awt.Dimension(480, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -219,7 +218,7 @@ public class Service extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Service().setVisible(true);
+                new TambahService().setVisible(true);
             }
         });
     }
