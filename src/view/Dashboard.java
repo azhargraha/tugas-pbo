@@ -258,9 +258,15 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
         // TODO add your handling code here:
-        TambahService obj = new TambahService(user);
-        dispose();
-        obj.setVisible(true);
+        if (this.accType.equalsIgnoreCase("client")){
+            TambahService obj = new TambahService(user);
+            dispose();
+            obj.setVisible(true);
+        }else {
+            Certificate cer = new Certificate(user, accType);
+            dispose();
+            cer.setVisible(true);
+        }
     }//GEN-LAST:event_serviceButtonActionPerformed
 
     private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
