@@ -58,7 +58,6 @@ public class Certificate extends javax.swing.JFrame {
         submitButton = new javax.swing.JButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 300));
         jDialog1.setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
