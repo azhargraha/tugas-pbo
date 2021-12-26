@@ -7,31 +7,20 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
-=======
 import java.sql.SQLException;
 import java.util.logging.Level;
->>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
 
 public class Payment extends javax.swing.JFrame {
-<<<<<<< HEAD
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
-    
-=======
-
     private Account user;
     private String accType;
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
 
->>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
     public Payment() {
         initComponents();
     }
@@ -371,8 +360,6 @@ public class Payment extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-<<<<<<< HEAD
-=======
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Dashboard obj = new Dashboard(user, accType);
@@ -380,7 +367,6 @@ public class Payment extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
->>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
         UploadWindow.addChoosableFileFilter(new FileNameExtensionFilter("Images (.jpg, .png, .jpeg)", "jpg", "png", "jpeg", "bmp"));
@@ -394,7 +380,6 @@ public class Payment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 
-<<<<<<< HEAD
     private void backButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton3ActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -402,7 +387,6 @@ public class Payment extends javax.swing.JFrame {
         jDialog1.setVisible(false);
         obj.setVisible(true);
     }//GEN-LAST:event_backButton3ActionPerformed
-=======
     private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
         try{
             con = DBConnection.getConnection();
@@ -431,7 +415,6 @@ public class Payment extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_refreshButton1ActionPerformed
->>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
 
     public static void main(String args[]) {
 
