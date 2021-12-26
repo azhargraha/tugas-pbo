@@ -24,12 +24,4 @@ public class Client {
     public void setServices(Service[] services) {
         this.services = services;
     }
-    
-    public void lihatService() {
-        
-    }
-    
-    public void lihatProfil() {
-        
-    }
 }
