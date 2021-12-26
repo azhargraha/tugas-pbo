@@ -4,21 +4,38 @@
  */
 package view;
 
+import controller.DBConnection;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Account;
 
 /**
  *
  * @author rizqiramadhannnn
  */
 public class Certificate extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Certificate
-     */
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    String filePath;
+    private Account user;
+    private String accType;
+    
     public Certificate() {
         initComponents();
+    }
+    
+    public Certificate(Account user, String accType) {
+        initComponents();
+        
+        this.user = user;
+        this.accType = accType;
     }
 
     /**
@@ -58,7 +75,6 @@ public class Certificate extends javax.swing.JFrame {
         submitButton = new javax.swing.JButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
-        jDialog1.setPreferredSize(new java.awt.Dimension(400, 300));
         jDialog1.setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -204,7 +220,7 @@ public class Certificate extends javax.swing.JFrame {
 
         tanggalComboBox.setBackground(new java.awt.Color(255, 255, 255));
         tanggalComboBox.setForeground(new java.awt.Color(68, 68, 68));
-        tanggalComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        tanggalComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         tanggalComboBox.setBorder(null);
 
         jLabel3.setText("Tanggal");
@@ -215,7 +231,7 @@ public class Certificate extends javax.swing.JFrame {
 
         bulanComboBox.setBackground(new java.awt.Color(255, 255, 255));
         bulanComboBox.setForeground(new java.awt.Color(68, 68, 68));
-        bulanComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        bulanComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         bulanComboBox.setBorder(null);
 
         tahunComboBox.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,6 +347,14 @@ public class Certificate extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void setFilePath(String path) {
+        this.filePath = path;
+    }
+    
+    private String getFilePath() {
+        return this.filePath;
+    }
+    
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
         UploadWindow.addChoosableFileFilter(new FileNameExtensionFilter("Images (.jpg, .png, .jpeg)", "jpg", "png", "jpeg", "bmp"));
@@ -339,14 +363,46 @@ public class Certificate extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = UploadWindow.getSelectedFile();
             filenameLabel.setText(file.getAbsolutePath());
+            setFilePath(file.getAbsolutePath());
         } else {
             System.out.println("File access cancelled by user.");
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
-
+    
+    private String concatDate() {
+        String tanggal = tanggalComboBox.getSelectedItem().toString();
+        String bulan = bulanComboBox.getSelectedItem().toString();
+        String tahun = tahunComboBox.getSelectedItem().toString();
+        
+        return tahun + "-" + bulan + "-" + tanggal;
+    }
+    
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {     
-        dispose();
-        jDialog1.setVisible(true);
+        String jenisSertif = jenisTextField.getText();
+        String pemberiSertif = pemberiSertifTextField.getText();
+        
+        if(jenisSertif.equals("") || pemberiSertif.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Some fields are empty", "Error", 1);
+        }else{
+            try{
+                con = DBConnection.getConnection();
+                pst = con.prepareStatement("insert into certificate(ID, Nama, Tipe, `Pemberi Sertifikat`, `Tanggal Terima`, `File Path`) "
+                        + "values(NULL, ?, ?, ?, ?, ?);");
+		pst.setString(2, fullName);
+                pst.setString(3, jenisSertif);
+                pst.setString(4, pemberiSertif);
+                pst.setString(5, concatDate());
+                pst.setString(6, getFilePath());
+                
+		rs = pst.executeQuery();
+                if(rs.next()){
+                    dispose();
+                    jDialog1.setVisible(true);
+                }
+            }catch(Exception ex){
+                System.out.println(""+ex);
+            }
+        }
     }             
     
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
