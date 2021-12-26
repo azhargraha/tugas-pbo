@@ -242,7 +242,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
         // TODO add your handling code here:
-        TambahService obj = new TambahService();
+        TambahService obj = new TambahService(user);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_serviceButtonActionPerformed
@@ -264,7 +264,15 @@ public class Dashboard extends javax.swing.JFrame {
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         try{
             con = DBConnection.getConnection();
-            pst = con.prepareStatement("select * from service");
+            String sql;
+            if(this.accType.equalsIgnoreCase("Technician")){
+                sql = "select * from service where (status=? and teknisi=?)";
+            }else{
+                sql = "select * from service where (status=? and klien=?)";
+            }
+            pst = con.prepareStatement(sql);
+            pst.setString(1, "ongoing");
+            pst.setString(2, this.user.getNamaLengkap());
             rs = pst.executeQuery();
             DefaultTableModel tm = (DefaultTableModel)ongoingServiceTable.getModel();
             tm.setRowCount(0);
