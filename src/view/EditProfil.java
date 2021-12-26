@@ -4,16 +4,37 @@
  */
 package view;
 
+import controller.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import model.Account;
+
 /**
  *
  * @author rizqiramadhannnn
  */
 public class EditProfil extends javax.swing.JFrame {
 
+    private Account user;
+    private String accType;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     /**
      * Creates new form EditProfil
      */
     public EditProfil() {
+        initComponents();
+    }
+
+    EditProfil(Account user, String accType) {
+        this.user = user;
+        this.accType = accType;
         initComponents();
     }
 
@@ -52,6 +73,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         tipeUserLabel = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +133,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
 
         namaTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        namaTextField.setText("nama");
+        namaTextField.setText(user.getNamaLengkap());
         namaTextField.setBorder(null);
         jPanel2.add(namaTextField);
 
@@ -125,7 +147,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel3.add(jLabel8);
 
         usernameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        usernameTextField.setText("username");
+        usernameTextField.setText(user.getUsername());
         usernameTextField.setBorder(null);
         jPanel3.add(usernameTextField);
 
@@ -139,7 +161,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel4.add(jLabel9);
 
         passwordTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        passwordTextField.setText("password");
+        passwordTextField.setText(user.getPassword());
         passwordTextField.setBorder(null);
         jPanel4.add(passwordTextField);
 
@@ -153,7 +175,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel5.add(jLabel10);
 
         emailTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        emailTextField.setText("email");
+        emailTextField.setText(user.getEmail());
         emailTextField.setBorder(null);
         jPanel5.add(emailTextField);
 
@@ -167,7 +189,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel6.add(jLabel11);
 
         namaTextField4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        namaTextField4.setText("no telp");
+        namaTextField4.setText(user.getNoTelp());
         namaTextField4.setBorder(null);
         jPanel6.add(namaTextField4);
 
@@ -181,7 +203,7 @@ public class EditProfil extends javax.swing.JFrame {
         jPanel7.add(jLabel12);
 
         alamatTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        alamatTextField.setText("alamat");
+        alamatTextField.setText(user.getAlamat());
         alamatTextField.setBorder(null);
         jPanel7.add(alamatTextField);
 
@@ -195,8 +217,12 @@ public class EditProfil extends javax.swing.JFrame {
 
         tipeUserLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tipeUserLabel.setForeground(new java.awt.Color(68, 68, 68));
-        tipeUserLabel.setText("tipe");
+        tipeUserLabel.setText(accType);
         jPanel8.add(tipeUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 400, 30));
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(68, 68, 68));
+        jLabel14.setText("Silahkan ubah field yang ingin diubah");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,10 +231,6 @@ public class EditProfil extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,17 +241,24 @@ public class EditProfil extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(backButton))
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,21 +297,46 @@ public class EditProfil extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        Profile obj = new Profile();
+        Profile obj = new Profile(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        Profile obj = new Profile();
+        
+        try{
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("update account set username=?, password=?,"
+                                        + " namaLengkap=?, email=?, alamat=?, noTelp=? where account.username=?");
+            pst.setString(1, usernameTextField.getText());
+            user.setUsername(usernameTextField.getText());
+            pst.setString(2, passwordTextField.getText());
+            user.setPassword(passwordTextField.getText());
+            pst.setString(3, namaTextField.getText());
+            user.setNamaLengkap(namaTextField.getText());
+            pst.setString(4, emailTextField.getText());
+            user.setEmail(emailTextField.getText());
+            pst.setString(5, alamatTextField.getText());
+            user.setAlamat(alamatTextField.getText());
+            pst.setString(6, namaTextField4.getText());
+            user.setNoTelp(namaTextField4.getText());
+            pst.setString(7, user.getUsername());
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Profile obj = new Profile(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -331,6 +385,7 @@ public class EditProfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
