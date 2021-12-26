@@ -14,6 +14,11 @@ public class Profile extends javax.swing.JFrame {
 
     private Account user;
     private String accType;
+    private float rating = 0;
+    private int pendapatan = 0;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
 
     public Profile() {
         initComponents();
@@ -23,6 +28,32 @@ public class Profile extends javax.swing.JFrame {
         this.user = user;
         this.accType = accType;
         initComponents();
+        
+        if(this.accType.equalsIgnoreCase("Technician")){
+            try {
+                con = DBConnection.getConnection();
+                pst = con.prepareStatement("select * from service where Teknisi =? and Status =?");
+                pst.setString(1, user.getNamaLengkap());
+                pst.setString(2, "Selesai");
+                rs = pst.executeQuery();
+                int i = 0;
+                while (rs.next()){
+                    this.rating = this.rating + (float) rs.getInt("rating");
+                    this.pendapatan = this.pendapatan + rs.getInt("Harga");
+                    i++;
+                }
+                this.rating = this.rating / i;
+                pendapatanLabel.setText("Rp." + String.valueOf(this.pendapatan));
+                ratingLabel.setText(String.valueOf(this.rating));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            tipeUserTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            tipeUserLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            pendapatanPanel.setVisible(false);
+            ratingPanel.setVisible(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -53,8 +84,14 @@ public class Profile extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         alamatTextField = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        tipeUserTitle = new javax.swing.JLabel();
         tipeUserLabel = new javax.swing.JLabel();
+        ratingPanel = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        ratingLabel = new javax.swing.JLabel();
+        pendapatanPanel = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        pendapatanLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -198,15 +235,45 @@ public class Profile extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel13.setText("Tipe user");
-        jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        tipeUserTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tipeUserTitle.setForeground(new java.awt.Color(68, 68, 68));
+        tipeUserTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tipeUserTitle.setText("Tipe user");
+        jPanel8.add(tipeUserTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, -1));
 
         tipeUserLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tipeUserLabel.setForeground(new java.awt.Color(68, 68, 68));
+        tipeUserLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tipeUserLabel.setText(accType);
-        jPanel8.add(tipeUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 400, 30));
+        jPanel8.add(tipeUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 100, 30));
+
+        ratingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ratingPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(68, 68, 68));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Rating");
+        ratingPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, -1));
+
+        ratingLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        ratingLabel.setForeground(new java.awt.Color(68, 68, 68));
+        ratingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ratingPanel.add(ratingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 90, 30));
+
+        pendapatanPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pendapatanPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(68, 68, 68));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Pendapatan");
+        pendapatanPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, -1));
+
+        pendapatanLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        pendapatanLabel.setForeground(new java.awt.Color(68, 68, 68));
+        pendapatanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pendapatanPanel.add(pendapatanLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 200, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,7 +281,7 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -225,11 +292,16 @@ public class Profile extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pendapatanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ratingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -252,8 +324,12 @@ public class Profile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ratingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pendapatanPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,7 +390,8 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -330,8 +407,13 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JTextField namaTextField;
     private javax.swing.JTextField namaTextField4;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JLabel pendapatanLabel;
+    private javax.swing.JPanel pendapatanPanel;
+    private javax.swing.JLabel ratingLabel;
+    private javax.swing.JPanel ratingPanel;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel tipeUserLabel;
+    private javax.swing.JLabel tipeUserTitle;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
