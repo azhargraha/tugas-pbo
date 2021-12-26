@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/tugas-pbo/src/view/Profile.java</file>
+            <file>file:/E:/tugas-pbo/src/view/TambahService.java</file>
             <file>file:/E:/tugas-pbo/src/view/EditProfil.java</file>
+            <file>file:/E:/tugas-pbo/src/view/Login.java</file>
+            <file>file:/E:/tugas-pbo/src/view/History.java</file>
             <file>file:/E:/tugas-pbo/src/view/Payment.java</file>
+            <file>file:/E:/tugas-pbo/src/view/Dashboard.java</file>
         </group>
     </open-files>
 </project-private>
