@@ -1,11 +1,33 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> abdc68d8492888c85db55e4c48097850c5d266cb
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/tugas-pbo/src/view/Profile.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Certificate.java</file>
+            <file>file:/D:/tugas-pbo/src/controller/TubesPBO.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Dashboard.java</file>
+            <file>file:/D:/tugas-pbo/src/model/Service.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Login.java</file>
+            <file>file:/D:/tugas-pbo/src/model/Account.java</file>
+            <file>file:/D:/tugas-pbo/src/view/History.java</file>
+            <file>file:/D:/tugas-pbo/src/controller/DBConnection.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Payment.java</file>
+        </group>
+    </open-files>
+</project-private>
+=======
+>>>>>>> ae86750c93b9b2223753689ce935daba38d18a6d
+=======
             <file>file:/E:/tugas-pbo/src/view/Profile.java</file>
             <file>file:/E:/tugas-pbo/src/view/EditProfil.java</file>
             <file>file:/E:/tugas-pbo/src/view/Payment.java</file>
         </group>
     </open-files>
 </project-private>
+>>>>>>> abdc68d8492888c85db55e4c48097850c5d266cb
