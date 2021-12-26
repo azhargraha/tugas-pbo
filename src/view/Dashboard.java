@@ -297,7 +297,7 @@ public class Dashboard extends javax.swing.JFrame {
             dispose();
             obj.setVisible(true);
         }else {
-            editService edsrv = new editService(user, accType);
+            EditService edsrv = new EditService(user, accType);
             dispose();
             edsrv.setVisible(true);
         }
@@ -347,7 +347,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-        editService obj = new editService(user, accType);
+        EditService obj = new EditService(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_editButtonActionPerformed
