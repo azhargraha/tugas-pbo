@@ -1,6 +1,5 @@
 package view;
 
-import com.mysql.cj.xdevapi.DbDoc;
 import controller.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
