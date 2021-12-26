@@ -68,7 +68,6 @@ public class Payment extends javax.swing.JFrame {
         uploadButton = new javax.swing.JButton();
         filenameLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        refreshButton = new javax.swing.JButton();
         refreshButton1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         ratingSlider = new javax.swing.JSlider();
@@ -76,7 +75,6 @@ public class Payment extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         ratingLabel = new javax.swing.JLabel();
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(400, 300));
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog1.setResizable(false);
 
@@ -144,14 +142,18 @@ public class Payment extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(480, 686));
+        setMinimumSize(new java.awt.Dimension(480, 720));
+        setPreferredSize(new java.awt.Dimension(480, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(463, 686));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setForeground(new java.awt.Color(68, 68, 68));
         jLabel2.setText("Pilih service yang ingin dibayar :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         pembayaranTable.setBackground(new java.awt.Color(255, 255, 255));
         pembayaranTable.setForeground(new java.awt.Color(68, 68, 68));
@@ -192,6 +194,8 @@ public class Payment extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(pembayaranTable);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 450, 239));
+
         submitButton.setBackground(new java.awt.Color(0, 165, 171));
         submitButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         submitButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,10 +209,12 @@ public class Payment extends javax.swing.JFrame {
                 submitButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 400, 36));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(68, 68, 68));
         jLabel7.setText("Pembayaran");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 32, 166, -1));
 
         backButton.setBackground(new java.awt.Color(255, 255, 255));
         backButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -223,6 +229,7 @@ public class Payment extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 42, 102, -1));
 
         uploadButton.setBackground(new java.awt.Color(255, 255, 255));
         uploadButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -237,22 +244,18 @@ public class Payment extends javax.swing.JFrame {
                 uploadButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(uploadButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 401, 36));
 
         filenameLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         filenameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         filenameLabel.setText("belum ada file yang ter-upload");
         filenameLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(filenameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 401, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(68, 68, 68));
         jLabel9.setText("Upload file");
-
-        refreshButton.setBackground(new java.awt.Color(255, 255, 255));
-        refreshButton.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
-        refreshButton.setForeground(new java.awt.Color(255, 102, 0));
-        refreshButton.setText("refresh");
-        refreshButton.setBorder(null);
-        refreshButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 158, -1));
 
         refreshButton1.setBackground(new java.awt.Color(255, 255, 255));
         refreshButton1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
@@ -265,10 +268,12 @@ public class Payment extends javax.swing.JFrame {
                 refreshButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(refreshButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 63, -1));
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(68, 68, 68));
         jLabel14.setText("Beri rating");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 158, -1));
 
         ratingSlider.setBackground(new java.awt.Color(255, 255, 255));
         ratingSlider.setForeground(new java.awt.Color(65, 65, 65));
@@ -276,110 +281,28 @@ public class Payment extends javax.swing.JFrame {
         ratingSlider.setMinimum(1);
         ratingSlider.setSnapToTicks(true);
         ratingSlider.setToolTipText("");
+        jPanel1.add(ratingSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 401, -1));
 
         jLabel1.setText("1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
         jLabel3.setText("5");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, -1, -1));
 
         ratingLabel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         ratingLabel.setForeground(new java.awt.Color(0, 165, 171));
         ratingLabel.setText("1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(181, 181, 181)
-                                        .addComponent(ratingLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3))
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(uploadButton, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(filenameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ratingSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 6, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(refreshButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(refreshButton)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(jLabel7))
-                .addGap(12, 12, 12)
-                .addComponent(refreshButton1)
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filenameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(ratingLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ratingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(refreshButton)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel1.add(ratingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
@@ -500,7 +423,6 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JTable pembayaranTable;
     private javax.swing.JLabel ratingLabel;
     private javax.swing.JSlider ratingSlider;
-    private javax.swing.JButton refreshButton;
     private javax.swing.JButton refreshButton1;
     private javax.swing.JButton submitButton;
     private javax.swing.JButton uploadButton;
