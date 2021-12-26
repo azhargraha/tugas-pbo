@@ -1,5 +1,6 @@
 package view;
 
+<<<<<<< HEAD
 import controller.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +9,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+=======
+>>>>>>> abdc68d8492888c85db55e4c48097850c5d266cb
 import model.Account;
-import model.Service;
 
 public class Profile extends javax.swing.JFrame {
 
@@ -55,7 +57,7 @@ public class Profile extends javax.swing.JFrame {
         alamatTextField = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        alamatTextField1 = new javax.swing.JTextField();
+        tipeUserLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -115,7 +117,6 @@ public class Profile extends javax.swing.JFrame {
         jLabel1.setText("Nama Lengkap");
         jPanel2.add(jLabel1);
 
-        namaTextField.setEditable(false);
         namaTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         namaTextField.setText(user.getNamaLengkap());
         namaTextField.setBorder(null);
@@ -131,10 +132,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel8.setText("Username");
         jPanel3.add(jLabel8);
 
-        usernameTextField.setEditable(false);
         usernameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         usernameTextField.setText(user.getUsername());
         usernameTextField.setBorder(null);
+        usernameTextField.setEditable(false);
         jPanel3.add(usernameTextField);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,10 +147,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel9.setText("Password");
         jPanel4.add(jLabel9);
 
-        passwordTextField.setEditable(false);
         passwordTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         passwordTextField.setText(user.getPassword());
         passwordTextField.setBorder(null);
+        passwordTextField.setEditable(false);
         jPanel4.add(passwordTextField);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -161,10 +162,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel10.setText("Email");
         jPanel5.add(jLabel10);
 
-        emailTextField.setEditable(false);
         emailTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         emailTextField.setText(user.getEmail());
         emailTextField.setBorder(null);
+        emailTextField.setEditable(false);
         jPanel5.add(emailTextField);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -176,10 +177,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel11.setText("No. Telepon");
         jPanel6.add(jLabel11);
 
-        namaTextField4.setEditable(false);
         namaTextField4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         namaTextField4.setText(user.getNoTelp());
         namaTextField4.setBorder(null);
+        namaTextField4.setEditable(false);
         jPanel6.add(namaTextField4);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -191,10 +192,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel12.setText("Alamat");
         jPanel7.add(jLabel12);
 
-        alamatTextField.setEditable(false);
         alamatTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         alamatTextField.setText(user.getAlamat());
         alamatTextField.setBorder(null);
+        alamatTextField.setEditable(false);
         jPanel7.add(alamatTextField);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -205,11 +206,10 @@ public class Profile extends javax.swing.JFrame {
         jLabel13.setText("Tipe user");
         jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        alamatTextField1.setEditable(false);
-        alamatTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        alamatTextField1.setText(accType);
-        alamatTextField1.setBorder(null);
-        jPanel8.add(alamatTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 401, -1));
+        tipeUserLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tipeUserLabel.setForeground(new java.awt.Color(68, 68, 68));
+        tipeUserLabel.setText(accType);
+        jPanel8.add(tipeUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 400, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,7 +281,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
@@ -295,7 +295,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        EditProfil obj = new EditProfil();
+        EditProfil obj = new EditProfil(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -311,7 +311,6 @@ public class Profile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamatTextField;
-    private javax.swing.JTextField alamatTextField1;
     private javax.swing.JButton backButton;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel jLabel1;
@@ -335,6 +334,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JTextField namaTextField4;
     private javax.swing.JTextField passwordTextField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel tipeUserLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
