@@ -335,8 +335,6 @@ public class Payment extends javax.swing.JFrame {
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
         
-        dispose();
-        jDialog1.setVisible(true);
         try{
             int row = pembayaranTable.getSelectedRow();
             String value = pembayaranTable.getValueAt(row, 1).toString();
@@ -345,6 +343,8 @@ public class Payment extends javax.swing.JFrame {
             pst = con.prepareStatement("update service set Status = 'Selesai' where id =?");
             pst.setString(1, value);
             pst.executeUpdate();
+            dispose();
+            jDialog1.setVisible(true);
             
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
