@@ -454,4 +454,4 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JButton submitButton;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
-}
+}   
