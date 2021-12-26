@@ -1,5 +1,6 @@
 package view;
 
+<<<<<<< HEAD
 import controller.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+=======
+>>>>>>> abdc68d8492888c85db55e4c48097850c5d266cb
 import model.Account;
 
 public class Profile extends javax.swing.JFrame {
