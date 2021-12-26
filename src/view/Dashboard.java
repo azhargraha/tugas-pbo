@@ -236,7 +236,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
-        Profile obj = new Profile(user, accType);
+        Profile obj = new Profile();
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_profileButtonActionPerformed
