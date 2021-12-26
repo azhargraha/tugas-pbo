@@ -70,4 +70,15 @@ public class Account {
         this.noTelp = noTelp;
     }
     
+    public void login(String username, String password) {
+        
+    }
+    
+    public void register(String username, String password) {
+        
+    }
+    
+    public void editProfil() {
+        
+    }
 }
