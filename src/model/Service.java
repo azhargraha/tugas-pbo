@@ -3,10 +3,10 @@ package model;
 public class Service implements ServiceStatus {
     private String type, problem, serviceStatus;
     private int serviceId, harga;
-    private Client client;
-    private Technician technician;
+    private String client;
+    private String technician;
 
-    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, Client client, Technician technician) {
+    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, String client, String technician) {
         this.type = type;
         this.problem = problem;
         this.serviceStatus = serviceStatus;
@@ -56,19 +56,19 @@ public class Service implements ServiceStatus {
         this.harga = harga;
     }
 
-    public Client getClient() {
+    public String getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(String client) {
         this.client = client;
     }
 
-    public Technician getTechnician() {
+    public String getTechnician() {
         return technician;
     }
 
-    public void setTechnician(Technician technician) {
+    public void setTechnician(String technician) {
         this.technician = technician;
     }
     

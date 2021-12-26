@@ -1,9 +1,42 @@
 package view;
 
+import controller.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import model.Account;
+import model.Client;
+import model.Service;
+import model.Technician;
 public class TambahService extends javax.swing.JFrame {
-
-    public TambahService() {
+    Account user;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    public TambahService(){
+        
+    }
+    public TambahService(Account user) {
+        this.user = user;
         initComponents();
+        try{
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("select Tipe from certificate group by Tipe");
+            rs = pst.executeQuery();
+            while(rs.next()){
+                String tipe = rs.getString("Tipe");
+                tipeComboBox.addItem(tipe);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TambahService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TambahService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +74,17 @@ public class TambahService extends javax.swing.JFrame {
         tipeComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tipeComboBox.setForeground(new java.awt.Color(68, 68, 68));
         tipeComboBox.setBorder(null);
+        tipeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipeComboBoxActionPerformed(evt);
+            }
+        });
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel4.setForeground(new java.awt.Color(130, 130, 130));
@@ -210,9 +253,64 @@ public class TambahService extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void callButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callButtonActionPerformed
-        // TODO add your handling code here:
+        Service svc = new Service(tipeComboBox.getSelectedItem().toString(), descTextField.getText(), "ongoing", 0, 0, user.getNamaLengkap(), jList1.getSelectedValue());
+        long millis=System.currentTimeMillis();  
+        java.sql.Date date=new java.sql.Date(millis);  
+        try{
+                con = DBConnection.getConnection();
+                PreparedStatement ps = con.prepareStatement("insert into service (ID, Tipe, Status, Harga, Teknisi, Klien, Tanggal, Deskripsi) values (NULL,?,?,?,?,?,?,?)");
+                ps.setString(1, svc.getType());
+                ps.setString(2, svc.getServiceStatus());
+                ps.setInt(3, 0);
+                ps.setString(4, svc.getTechnician());
+                ps.setString(5, svc.getClient());
+                ps.setDate(6, date);
+                ps.setString(7, svc.getProblem());
+                if(ps.executeUpdate() > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Service added");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
     }//GEN-LAST:event_callButtonActionPerformed
+
+    private void tipeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipeComboBoxActionPerformed
+        Object selectedItem = tipeComboBox.getSelectedItem();
+        PreparedStatement st;
+        ResultSet rst;
+        String tipe = selectedItem.toString();
+        DefaultListModel model = new DefaultListModel();
+        try{
+            st = con.prepareStatement("select * from certificate where Tipe=?");
+            st.setString(1, tipe);
+            rst = st.executeQuery();
+            while(rst.next()){
+                String name = rst.getString("Nama");
+                model.addElement(name);
+            }
+            jList1.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(TambahService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tipeComboBoxActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        try{
+            PreparedStatement st = con.prepareStatement("SELECT * FROM certificate WHERE nama='" + (jList1.getSelectedValue()) + "'");
+            ResultSet rst = st.executeQuery();
+            while(rst.next()){
+                jLabel4.setText(rst.getString("Nama"));
+                //jLabel4.setText(String.valueOf(rst.getFloat("Rating")));
+                //jLabel4.setText(rst.getString("noTelp"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TambahService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jList1MouseClicked
 
     public static void main(String args[]) {
 

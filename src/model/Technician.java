@@ -1,13 +1,14 @@
 package model;
 
-public class Technician {
+public class Technician extends Account{
     private int jobFinished, pemasukan;
     private String mastery;
     private Certificate[] certificate;
     private float rating;
     private Service[] services;
 
-    public Technician(int jobFinished, int pemasukan, String mastery, Certificate[] certificate, float rating, Service[] services) {
+    public Technician(String id, String username, String password, String namaLengkap, String email, String alamat, String noTelp, int jobFinished, int pemasukan, String mastery, Certificate[] certificate, float rating, Service[] services) {
+        super(id, username, password, namaLengkap, email, alamat, noTelp);
         this.jobFinished = jobFinished;
         this.pemasukan = pemasukan;
         this.mastery = mastery;
