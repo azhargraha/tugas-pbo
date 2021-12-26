@@ -3,6 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/tugas-pbo/src/view/Profile.java</file>
+            <file>file:/D:/tugas-pbo/src/view/EditService.java</file>
+            <file>file:/D:/tugas-pbo/src/controller/TubesPBO.java</file>
+            <file>file:/D:/tugas-pbo/src/view/EditProfil.java</file>
+            <file>file:/D:/tugas-pbo/src/view/TambahService.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Dashboard.java</file>
+            <file>file:/D:/tugas-pbo/src/view/History.java</file>
+            <file>file:/D:/tugas-pbo/src/controller/DBConnection.java</file>
+            <file>file:/D:/tugas-pbo/src/view/Payment.java</file>
+=======
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/view/Certificate.java</file>
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/view/Dashboard.java</file>
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/view/Payment.java</file>
@@ -20,6 +31,7 @@
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/model/Technician.java</file>
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/view/EditProfil.java</file>
             <file>file:/C:/Users/Lenovo/Documents/NetBeansProjects/tugas-pbo/src/model/ServiceStatus.java</file>
+>>>>>>> 799411c25d7a2b326d42c27a5aefc415addd7781
         </group>
     </open-files>
 </project-private>

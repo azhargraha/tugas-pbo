@@ -19,6 +19,10 @@ public class Dashboard extends javax.swing.JFrame {
     ResultSet rs;
     public Dashboard() {
         initComponents();
+        try {
+            
+        } catch (Exception e) {
+        }
     }
     public Dashboard(Account user, String accType){
         this.user = user;
