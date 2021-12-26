@@ -25,7 +25,7 @@ public class editService extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
+        doneButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ongoingServiceTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -71,16 +71,16 @@ public class editService extends javax.swing.JFrame {
             }
         });
 
-        saveButton.setBackground(new java.awt.Color(0, 165, 171));
-        saveButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
-        saveButton.setText("Simpan");
-        saveButton.setBorder(null);
-        saveButton.setBorderPainted(false);
-        saveButton.setFocusPainted(false);
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
+        doneButton.setBackground(new java.awt.Color(0, 165, 171));
+        doneButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        doneButton.setForeground(new java.awt.Color(255, 255, 255));
+        doneButton.setText("Selesai");
+        doneButton.setBorder(null);
+        doneButton.setBorderPainted(false);
+        doneButton.setFocusPainted(false);
+        doneButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+                doneButtonActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class editService extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel11)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2))))
@@ -179,7 +179,7 @@ public class editService extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
@@ -198,9 +198,9 @@ public class editService extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }//GEN-LAST:event_doneButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
@@ -229,6 +229,7 @@ public class editService extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextArea descTextField;
+    private javax.swing.JButton doneButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
@@ -236,6 +237,5 @@ public class editService extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable ongoingServiceTable;
-    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
