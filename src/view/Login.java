@@ -582,6 +582,8 @@ public class Login extends javax.swing.JFrame {
                 if(pst.executeUpdate() > 0)
                 {
                 JOptionPane.showMessageDialog(null, "New User Add");
+                    registPanel.setVisible(false);
+                    loginPanel.setVisible(true);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

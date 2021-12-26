@@ -26,14 +26,35 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         if(accType.equalsIgnoreCase("client")){
             serviceButton.setText("Tambah Service");
+            paymentButton.setText("Pembayaran");
             ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Teknisi");
             ongoingServiceTable.getTableHeader().repaint();
+            
         }else{
             serviceButton.setText("Tambah Sertifikat");
+            paymentButton.setText("Edit Service");
             ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Klien");
             ongoingServiceTable.getTableHeader().repaint();
+            
         }
     }
+
+    public Account getUser() {
+        return user;
+    }
+
+    public void setUser(Account user) {
+        this.user = user;
+    }
+
+    public String getAccType() {
+        return accType;
+    }
+
+    public void setAccType(String accType) {
+        this.accType = accType;
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -258,7 +279,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
         // TODO add your handling code here:
-        if (this.accType.equalsIgnoreCase("client")){
+        if (getAccType().equalsIgnoreCase("client")){
             TambahService obj = new TambahService(user);
             dispose();
             obj.setVisible(true);
@@ -271,9 +292,16 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
         // TODO add your handling code here:
-        Payment obj = new Payment(user, accType);
-        dispose();
-        obj.setVisible(true);
+        if (getAccType().equalsIgnoreCase("client")){
+            Payment obj = new Payment(user, accType);
+            dispose();
+            obj.setVisible(true);
+        }else {
+            editService edsrv = new editService(user, accType);
+            dispose();
+            edsrv.setVisible(true);
+        }
+        
     }//GEN-LAST:event_paymentButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
