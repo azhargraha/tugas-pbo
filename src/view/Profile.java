@@ -1,8 +1,19 @@
 package view;
 
+import model.Account;
+
 public class Profile extends javax.swing.JFrame {
 
+    private Account user;
+    private String accType;
+
     public Profile() {
+        initComponents();
+    }
+
+    Profile(Account user, String accType) {
+        this.user = user;
+        this.accType = accType;
         initComponents();
     }
 
@@ -96,8 +107,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
 
         namaTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        namaTextField.setText("nama");
+        namaTextField.setText(user.getNamaLengkap());
         namaTextField.setBorder(null);
+        namaTextField.setEditable(false);
         jPanel2.add(namaTextField);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -110,8 +122,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel3.add(jLabel8);
 
         usernameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        usernameTextField.setText("username");
+        usernameTextField.setText(user.getUsername());
         usernameTextField.setBorder(null);
+        usernameTextField.setEditable(false);
         jPanel3.add(usernameTextField);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -124,8 +137,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel4.add(jLabel9);
 
         passwordTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        passwordTextField.setText("password");
+        passwordTextField.setText(user.getPassword());
         passwordTextField.setBorder(null);
+        passwordTextField.setEditable(false);
         jPanel4.add(passwordTextField);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,8 +152,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel5.add(jLabel10);
 
         emailTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        emailTextField.setText("email");
+        emailTextField.setText(user.getEmail());
         emailTextField.setBorder(null);
+        emailTextField.setEditable(false);
         jPanel5.add(emailTextField);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -152,8 +167,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel6.add(jLabel11);
 
         namaTextField4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        namaTextField4.setText("no telp");
+        namaTextField4.setText(user.getNoTelp());
         namaTextField4.setBorder(null);
+        namaTextField4.setEditable(false);
         jPanel6.add(namaTextField4);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -166,8 +182,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel7.add(jLabel12);
 
         alamatTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        alamatTextField.setText("alamat");
+        alamatTextField.setText(user.getAlamat());
         alamatTextField.setBorder(null);
+        alamatTextField.setEditable(false);
         jPanel7.add(alamatTextField);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -180,7 +197,7 @@ public class Profile extends javax.swing.JFrame {
 
         tipeUserLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tipeUserLabel.setForeground(new java.awt.Color(68, 68, 68));
-        tipeUserLabel.setText("tipe");
+        tipeUserLabel.setText(accType);
         jPanel8.add(tipeUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 19, 400, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -253,7 +270,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
@@ -267,7 +284,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        EditProfil obj = new EditProfil();
+        EditProfil obj = new EditProfil(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_saveButtonActionPerformed
