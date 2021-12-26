@@ -14,6 +14,7 @@ import model.Service;
 
 public class Dashboard extends javax.swing.JFrame {
     private Account user;
+    private String accType;
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
@@ -22,11 +23,16 @@ public class Dashboard extends javax.swing.JFrame {
     }
     public Dashboard(Account user, String accType){
         this.user = user;
+        this.accType = accType;
         initComponents();
         if(accType.equalsIgnoreCase("client")){
             serviceButton.setText("Tambah Service");
+            ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Teknisi");
+            ongoingServiceTable.getTableHeader().repaint();
         }else{
             serviceButton.setText("Tambah Sertifikat");
+            ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Klien");
+            ongoingServiceTable.getTableHeader().repaint();
         }
     }
 
@@ -265,10 +271,15 @@ public class Dashboard extends javax.swing.JFrame {
             tm.setRowCount(0);
             
             while (rs.next()){
+                String name;
+                if(this.accType.equalsIgnoreCase("Technician")){
+                    name = "Klien";
+                }else{
+                    name = "Teknisi";
+                }
                 Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"), 
-                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien")};
-                tm.addRow(o);
-                
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString(name)};
+                tm.addRow(o);   
             }
         } catch (SQLException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
