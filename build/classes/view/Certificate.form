@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
@@ -607,3 +608,5 @@
     </Container>
   </SubComponents>
 </Form>
+=======
+>>>>>>> ae86750c93b9b2223753689ce935daba38d18a6d
