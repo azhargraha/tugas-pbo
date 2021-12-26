@@ -72,14 +72,6 @@ public class Service implements ServiceStatus {
         this.technician = technician;
     }
     
-    public void rating() {
-        
-    }
-    
-    public void summary() {
-        
-    }
-    
     @Override
     public String serviceStatus(String s) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

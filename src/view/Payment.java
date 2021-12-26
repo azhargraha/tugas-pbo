@@ -394,8 +394,12 @@ public class Payment extends javax.swing.JFrame {
             
             con = DBConnection.getConnection();
             pst = con.prepareStatement("update service set Status = 'Selesai', rating =? where id =?");
+            PreparedStatement st = con.prepareStatement("insert into payment (paymentID, serviceID, harga) values (NULL, ?, ?)");
+            st.setInt(1, (int)pembayaranTable.getValueAt(row, 1));
+            st.setInt(1, (int)pembayaranTable.getValueAt(row, 4));
             pst.setInt(1, ratingSlider.getValue());
             pst.setString(2, value);
+            st.executeUpdate();
             pst.executeUpdate();
             dispose();
             jDialog1.setVisible(true);
