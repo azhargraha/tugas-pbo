@@ -261,7 +261,7 @@ public class TambahService extends javax.swing.JFrame {
         java.sql.Date date=new java.sql.Date(millis);  
         try{
                 con = DBConnection.getConnection();
-                PreparedStatement ps = con.prepareStatement("insert into service (ID, Tipe, Status, Harga, Teknisi, Klien, Tanggal, Deskripsi) values (NULL,?,?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("insert into service (ID, Tipe, Status, Harga, Teknisi, Klien, Tanggal, Deskripsi, Rating) values (NULL,?,?,?,?,?,?,?,0)");
                 ps.setString(1, svc.getType());
                 ps.setString(2, svc.getServiceStatus());
                 ps.setInt(3, 0);
