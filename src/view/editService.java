@@ -328,8 +328,9 @@ public class EditService extends javax.swing.JFrame {
             String value = ongoingServiceTable.getValueAt(row, 1).toString();
             
             con = DBConnection.getConnection();
-            pst = con.prepareStatement("update service set Status = 'Selesai' where id =?");
-            pst.setString(1, value);
+            pst = con.prepareStatement("update service set Status = 'Selesai', Harga=?  where id =?");
+            pst.setInt(1, Integer.parseInt(descTextField1.getText()));
+            pst.setString(2, value);
             pst.executeUpdate();
             
             dispose();
