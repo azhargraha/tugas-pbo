@@ -13,18 +13,18 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
 
-public class editService extends javax.swing.JFrame {
+public class EditService extends javax.swing.JFrame {
     private Account user;
     private String accType;
     Connection con;
     PreparedStatement pst, desc;
     ResultSet rs;
     
-    public editService() {
+    public EditService() {
         initComponents();
     }
     
-    public editService(Account user, String accType) {
+    public EditService(Account user, String accType) {
         this.user = user;
         this.accType = accType;
         
@@ -401,7 +401,7 @@ public class editService extends javax.swing.JFrame {
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(editService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ongoingServiceTableMouseClicked
 
@@ -409,7 +409,7 @@ public class editService extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editService().setVisible(true);
+                new EditService().setVisible(true);
             }
         });
     }
