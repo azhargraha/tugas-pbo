@@ -357,6 +357,7 @@ public class Certificate extends javax.swing.JFrame {
     
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
+        System.out.println(user.getNamaLengkap());
         UploadWindow.addChoosableFileFilter(new FileNameExtensionFilter("Images (.jpg, .png, .jpeg)", "jpg", "png", "jpeg", "bmp"));
         UploadWindow.setAcceptAllFileFilterUsed(true);
         int returnVal = UploadWindow.showOpenDialog(this);
@@ -388,7 +389,7 @@ public class Certificate extends javax.swing.JFrame {
                 con = DBConnection.getConnection();
                 pst = con.prepareStatement("insert into certificate(ID, Nama, Tipe, `Pemberi Sertifikat`, `Tanggal Terima`, `File Path`) "
                         + "values(NULL, ?, ?, ?, ?, ?);");
-		pst.setString(2, fullName);
+		pst.setString(2, user.getNamaLengkap());
                 pst.setString(3, jenisSertif);
                 pst.setString(4, pemberiSertif);
                 pst.setString(5, concatDate());
