@@ -32,10 +32,9 @@ public class Certificate extends javax.swing.JFrame {
     }
     
     public Certificate(Account user, String accType) {
-        initComponents();
-        
         this.user = user;
         this.accType = accType;
+        initComponents();
     }
 
     /**
@@ -342,7 +341,7 @@ public class Certificate extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
@@ -357,7 +356,6 @@ public class Certificate extends javax.swing.JFrame {
     
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
-        System.out.println(user.getNamaLengkap());
         UploadWindow.addChoosableFileFilter(new FileNameExtensionFilter("Images (.jpg, .png, .jpeg)", "jpg", "png", "jpeg", "bmp"));
         UploadWindow.setAcceptAllFileFilterUsed(true);
         int returnVal = UploadWindow.showOpenDialog(this);
@@ -389,17 +387,15 @@ public class Certificate extends javax.swing.JFrame {
                 con = DBConnection.getConnection();
                 pst = con.prepareStatement("insert into certificate(ID, Nama, Tipe, `Pemberi Sertifikat`, `Tanggal Terima`, `File Path`) "
                         + "values(NULL, ?, ?, ?, ?, ?);");
-		pst.setString(2, user.getNamaLengkap());
-                pst.setString(3, jenisSertif);
-                pst.setString(4, pemberiSertif);
-                pst.setString(5, concatDate());
-                pst.setString(6, getFilePath());
+		pst.setString(1, user.getNamaLengkap());
+                pst.setString(2, jenisSertif);
+                pst.setString(3, pemberiSertif);
+                pst.setString(4, concatDate());
+                pst.setString(5, getFilePath());
                 
-		rs = pst.executeQuery();
-                if(rs.next()){
-                    dispose();
-                    jDialog1.setVisible(true);
-                }
+		pst.executeUpdate();
+                dispose();
+                jDialog1.setVisible(true);
             }catch(Exception ex){
                 System.out.println(""+ex);
             }
@@ -418,7 +414,7 @@ public class Certificate extends javax.swing.JFrame {
     private void backButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton1ActionPerformed
         // TODO add your handling code here:
         dispose();
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         jDialog1.setVisible(false);
         obj.setVisible(true);
     }//GEN-LAST:event_backButton1ActionPerformed
