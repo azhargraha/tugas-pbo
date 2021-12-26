@@ -249,14 +249,14 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
         // TODO add your handling code here:
-        Payment obj = new Payment();
+        Payment obj = new Payment(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_paymentButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
         // TODO add your handling code here:
-        History obj = new History();
+        History obj = new History(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_historyButtonActionPerformed

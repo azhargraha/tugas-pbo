@@ -1,21 +1,52 @@
 package view;
 
+import controller.DBConnection;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
+=======
+import java.sql.SQLException;
+import java.util.logging.Level;
+>>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import model.Account;
 
 public class Payment extends javax.swing.JFrame {
+<<<<<<< HEAD
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
     
+=======
+
+    private Account user;
+    private String accType;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+
+>>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
     public Payment() {
         initComponents();
+    }
+
+    Payment(Account user, String accType) {
+        this.user = user;
+        this.accType = accType;
+        initComponents();
+        if(accType.equalsIgnoreCase("client")){
+            pembayaranTable.getColumnModel().getColumn(5).setHeaderValue("Teknisi");
+            pembayaranTable.getTableHeader().repaint();
+        }else{
+            pembayaranTable.getColumnModel().getColumn(5).setHeaderValue("Klien");
+            pembayaranTable.getTableHeader().repaint();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,13 +62,15 @@ public class Payment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        pembayaranTable = new javax.swing.JTable();
         submitButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         uploadButton = new javax.swing.JButton();
         filenameLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        refreshButton = new javax.swing.JButton();
+        refreshButton1 = new javax.swing.JButton();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,9 +145,9 @@ public class Payment extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(68, 68, 68));
         jLabel2.setText("Pilih service yang ingin dibayar :");
 
-        jTable2.setBackground(new java.awt.Color(255, 255, 255));
-        jTable2.setForeground(new java.awt.Color(68, 68, 68));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        pembayaranTable.setBackground(new java.awt.Color(255, 255, 255));
+        pembayaranTable.setForeground(new java.awt.Color(68, 68, 68));
+        pembayaranTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -149,7 +182,7 @@ public class Payment extends javax.swing.JFrame {
                 "Tanggal", "ID", "Tipe", "Status", "Harga", "Teknisi"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(pembayaranTable);
 
         submitButton.setBackground(new java.awt.Color(0, 165, 171));
         submitButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -206,6 +239,25 @@ public class Payment extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(68, 68, 68));
         jLabel9.setText("Upload file");
 
+        refreshButton.setBackground(new java.awt.Color(255, 255, 255));
+        refreshButton.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(255, 102, 0));
+        refreshButton.setText("refresh");
+        refreshButton.setBorder(null);
+        refreshButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        refreshButton1.setBackground(new java.awt.Color(255, 255, 255));
+        refreshButton1.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        refreshButton1.setForeground(new java.awt.Color(255, 102, 0));
+        refreshButton1.setText("refresh");
+        refreshButton1.setBorder(null);
+        refreshButton1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        refreshButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,26 +267,38 @@ public class Payment extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-                            .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 6, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(uploadButton, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(filenameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(filenameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(refreshButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(refreshButton)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,9 +307,11 @@ public class Payment extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(jLabel7))
-                .addGap(39, 39, 39)
+                .addGap(12, 12, 12)
+                .addComponent(refreshButton1)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
@@ -253,9 +319,14 @@ public class Payment extends javax.swing.JFrame {
                 .addComponent(filenameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(refreshButton)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,15 +348,39 @@ public class Payment extends javax.swing.JFrame {
         
         dispose();
         jDialog1.setVisible(true);
+        try{
+            int row = pembayaranTable.getSelectedRow();
+            String value = pembayaranTable.getValueAt(row, 1).toString();
+            
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("update service set Status = 'Selesai' where id =?");
+            pst.setString(1, value);
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Dashboard obj = new Dashboard(user, accType);
+        jDialog1.dispose();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+>>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
         UploadWindow.addChoosableFileFilter(new FileNameExtensionFilter("Images (.jpg, .png, .jpeg)", "jpg", "png", "jpeg", "bmp"));
@@ -299,6 +394,7 @@ public class Payment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 
+<<<<<<< HEAD
     private void backButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton3ActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -306,6 +402,36 @@ public class Payment extends javax.swing.JFrame {
         jDialog1.setVisible(false);
         obj.setVisible(true);
     }//GEN-LAST:event_backButton3ActionPerformed
+=======
+    private void refreshButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButton1ActionPerformed
+        try{
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement("select * from service where (Teknisi =? or Klien =?) and Status =?");
+            pst.setString(1, user.getNamaLengkap());
+            pst.setString(2, user.getNamaLengkap());
+            pst.setString(3, "menunggu pembayaran");
+            rs = pst.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel)pembayaranTable.getModel();
+            tm.setRowCount(0);
+
+            while (rs.next()){
+                String name;
+                if(this.accType.equalsIgnoreCase("Technician")){
+                    name = "Klien";
+                }else{
+                    name = "Teknisi";
+                }
+                Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"),
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString(name)};
+                tm.addRow(o);
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_refreshButton1ActionPerformed
+>>>>>>> 8fc55a802dabcffcb78df283403689f34809ecfd
 
     public static void main(String args[]) {
 
@@ -339,7 +465,9 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable pembayaranTable;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JButton refreshButton1;
     private javax.swing.JButton submitButton;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
