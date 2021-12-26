@@ -284,7 +284,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void serviceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceButtonActionPerformed
         // TODO add your handling code here:
         if (getAccType().equalsIgnoreCase("client")){
-            TambahService obj = new TambahService(user);
+            TambahService obj = new TambahService(user, accType);
             dispose();
             obj.setVisible(true);
         }else {
