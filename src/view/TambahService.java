@@ -13,16 +13,19 @@ import model.Account;
 import model.Client;
 import model.Service;
 import model.Technician;
+import org.w3c.dom.NameList;
 public class TambahService extends javax.swing.JFrame {
-    Account user;
+    private Account user;
+    private String accType;
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
     public TambahService(){
         
     }
-    public TambahService(Account user) {
+    public TambahService(Account user, String accType) {
         this.user = user;
+        this.accType = accType;
         initComponents();
         try{
             con = DBConnection.getConnection();
@@ -247,7 +250,7 @@ public class TambahService extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        Dashboard obj = new Dashboard();
+        Dashboard obj = new Dashboard(user, accType);
         dispose();
         obj.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
@@ -300,12 +303,12 @@ public class TambahService extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         try{
-            PreparedStatement st = con.prepareStatement("SELECT * FROM certificate WHERE nama='" + (jList1.getSelectedValue()) + "'");
+            PreparedStatement st = con.prepareStatement("SELECT account.noTelp, certificate.nama, AVG(service.rating) as average FROM ((account inner join certificate on account.namaLengkap = certificate.Nama) INNER JOIN service on account.namaLengkap = service.Teknisi)");
             ResultSet rst = st.executeQuery();
             while(rst.next()){
-                jLabel4.setText(rst.getString("Nama"));
-                //jLabel4.setText(String.valueOf(rst.getFloat("Rating")));
-                //jLabel4.setText(rst.getString("noTelp"));
+                namaLabel.setText(rst.getString("Nama"));
+                ratingLabel.setText(String.valueOf(rst.getFloat("average")));
+                noTelpLabel.setText(rst.getString("noTelp"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TambahService.class.getName()).log(Level.SEVERE, null, ex);
