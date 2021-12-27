@@ -13,18 +13,18 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
 
-public class EditService extends javax.swing.JFrame {
+public class editService extends javax.swing.JFrame {
     private Account user;
     private String accType;
     Connection con;
     PreparedStatement pst, desc;
     ResultSet rs;
     
-    public EditService() {
+    public editService() {
         initComponents();
     }
     
-    public EditService(Account user, String accType) {
+    public editService(Account user, String accType) {
         this.user = user;
         this.accType = accType;
         
@@ -52,8 +52,9 @@ public class EditService extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         descTextField = new javax.swing.JTextArea();
         refreshButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         descTextField1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 300));
         jDialog1.setResizable(false);
@@ -235,12 +236,23 @@ public class EditService extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(68, 68, 68));
+        jLabel8.setText("Masukkan Biaya Servis :");
+        jPanel3.add(jLabel8);
+
         descTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         descTextField1.setBorder(null);
-
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(68, 68, 68));
-        jLabel10.setText("Masukkan biaya servis :");
+        descTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(descTextField1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,16 +280,14 @@ public class EditService extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(descTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel11)
-                        .addComponent(jScrollPane2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,13 +304,11 @@ public class EditService extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addGap(0, 0, 0)
-                .addComponent(descTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,7 +336,7 @@ public class EditService extends javax.swing.JFrame {
             String value = ongoingServiceTable.getValueAt(row, 1).toString();
             
             con = DBConnection.getConnection();
-            pst = con.prepareStatement("update service set Status = 'Selesai', Harga=?  where id =?");
+            pst = con.prepareStatement("update service set Status = 'menunggu pembayaran', Harga=?  where id =?");
             pst.setInt(1, Integer.parseInt(descTextField1.getText()));
             pst.setString(2, value);
             pst.executeUpdate();
@@ -419,15 +427,19 @@ public class EditService extends javax.swing.JFrame {
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(editService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ongoingServiceTableMouseClicked
+
+    private void descTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descTextField1ActionPerformed
 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditService().setVisible(true);
+                new editService().setVisible(true);
             }
         });
     }
@@ -441,12 +453,13 @@ public class EditService extends javax.swing.JFrame {
     private javax.swing.JButton doneButton;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -285,7 +285,7 @@ public class Dashboard extends javax.swing.JFrame {
             dispose();
             obj.setVisible(true);
         }else {
-            EditService edsrv = new EditService(user, accType);
+            editService edsrv = new editService(user, accType);
             dispose();
             edsrv.setVisible(true);
         }
