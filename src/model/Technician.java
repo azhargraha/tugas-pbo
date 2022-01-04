@@ -64,17 +64,6 @@ public class Technician extends Account{
     public void setServices(Service[] services) {
         this.services = services;
     }
-    
-    public float avgRating(Service[] services) {
-       return (float) 0.1; 
-    }
-    
-    public void lihatProfil() {
-        
-    }
-    
-    public void addCertificate(String[] certificate) {
-        
-    }
+
         
 }
