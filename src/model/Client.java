@@ -1,10 +1,11 @@
 package model;
 
-public class Client {
+public class Client extends Account {
     private String problem;
     private Service[] services;
 
-    public Client(String problem, Service[] services) {
+    public Client(String id, String username, String password, String namaLengkap, String email, String alamat, String noTelp, String problem, Service[] services) {
+        super(id, username, password, namaLengkap, email, alamat, noTelp);
         this.problem = problem;
         this.services = services;
     }
@@ -23,13 +24,5 @@ public class Client {
 
     public void setServices(Service[] services) {
         this.services = services;
-    }
-    
-    public void lihatService() {
-        
-    }
-    
-    public void lihatProfil() {
-        
     }
 }
