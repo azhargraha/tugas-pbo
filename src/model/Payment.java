@@ -32,12 +32,5 @@ public class Payment {
     public void setHarga(int harga) {
         this.harga = harga;
     }
-    
-    public void wallet() {
-        
-    }
-    
-    public void cash() {
-        
-    }
+
 }

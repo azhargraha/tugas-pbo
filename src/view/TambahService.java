@@ -272,6 +272,9 @@ public class TambahService extends javax.swing.JFrame {
                 if(ps.executeUpdate() > 0)
                 {
                     JOptionPane.showMessageDialog(null, "Service added");
+                    dispose();
+                    Dashboard obj = new Dashboard(user, accType);
+                    obj.setVisible(true);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
