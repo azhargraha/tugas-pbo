@@ -177,24 +177,24 @@ public class editService extends javax.swing.JFrame {
         ongoingServiceTable.setForeground(new java.awt.Color(68, 68, 68));
         ongoingServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "ID", "Tipe", "Status", "Harga", "Klien"
+                "Tanggal", "ID", "Tipe", "Status", "Harga", "Client", "Teknisi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -400,7 +400,7 @@ public class editService extends javax.swing.JFrame {
 
             while (rs.next()){
                 Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"),
-                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien")};
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien"), rs.getString("Teknisi")};
                 tm.addRow(o);
             }
         } catch (SQLException ex) {

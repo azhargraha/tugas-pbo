@@ -5,8 +5,9 @@ public class Service implements ServiceStatus {
     private int serviceId, harga;
     private String client;
     private String technician;
+    private Payment payment;
 
-    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, String client, String technician) {
+    public Service(String type, String problem, String serviceStatus, int serviceId, int harga, String client, String technician, Payment payment) {
         this.type = type;
         this.problem = problem;
         this.serviceStatus = serviceStatus;
@@ -14,6 +15,7 @@ public class Service implements ServiceStatus {
         this.harga = harga;
         this.client = client;
         this.technician = technician;
+        this.payment = payment;
     }
 
     public String getType() {

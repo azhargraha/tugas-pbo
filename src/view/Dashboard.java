@@ -31,14 +31,10 @@ public class Dashboard extends javax.swing.JFrame {
         if(accType.equalsIgnoreCase("client")){
             serviceButton.setText("Tambah Service");
             paymentButton.setText("Pembayaran");
-            ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Teknisi");
-            ongoingServiceTable.getTableHeader().repaint();
             
         }else{
             serviceButton.setText("Tambah Sertifikat");
             paymentButton.setText("Edit Service");
-            ongoingServiceTable.getColumnModel().getColumn(5).setHeaderValue("Klien");
-            ongoingServiceTable.getTableHeader().repaint();
             
         }
     }
@@ -95,28 +91,35 @@ public class Dashboard extends javax.swing.JFrame {
         ongoingServiceTable.setForeground(new java.awt.Color(68, 68, 68));
         ongoingServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "ID", "Tipe", "Status", "Harga", "Teknisi"
+                "Tanggal", "ID", "Tipe", "Status", "Harga", "Client", "Teknisi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(ongoingServiceTable);
@@ -316,14 +319,8 @@ public class Dashboard extends javax.swing.JFrame {
             tm.setRowCount(0);
             
             while (rs.next()){
-                String name;
-                if(this.accType.equalsIgnoreCase("Technician")){
-                    name = "Klien";
-                }else{
-                    name = "Teknisi";
-                }
                 Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"), 
-                    rs.getString("Status"), rs.getInt("Harga"), rs.getString(name)};
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien"), rs.getString("Teknisi")};
                 tm.addRow(o);   
             }
         } catch (SQLException ex) {

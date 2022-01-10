@@ -31,13 +31,6 @@ public class Payment extends javax.swing.JFrame {
         this.user = user;
         this.accType = accType;
         initComponents();
-        if(accType.equalsIgnoreCase("client")){
-            pembayaranTable.getColumnModel().getColumn(5).setHeaderValue("Teknisi");
-            pembayaranTable.getTableHeader().repaint();
-        }else{
-            pembayaranTable.getColumnModel().getColumn(5).setHeaderValue("Klien");
-            pembayaranTable.getTableHeader().repaint();
-        }
         
         ratingSlider.setValue(0);
         ratingSlider.addChangeListener(new ChangeListener() {
@@ -143,7 +136,6 @@ public class Payment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(480, 720));
-        setPreferredSize(new java.awt.Dimension(480, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -159,39 +151,47 @@ public class Payment extends javax.swing.JFrame {
         pembayaranTable.setForeground(new java.awt.Color(68, 68, 68));
         pembayaranTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "ID", "Tipe", "Status", "Harga", "Teknisi"
+                "Tanggal", "ID", "Tipe", "Status", "Harga", "Client", "Teknisi"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(pembayaranTable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 450, 239));
@@ -376,14 +376,8 @@ public class Payment extends javax.swing.JFrame {
             tm.setRowCount(0);
 
             while (rs.next()){
-                String name;
-                if(this.accType.equalsIgnoreCase("Technician")){
-                    name = "Klien";
-                }else{
-                    name = "Teknisi";
-                }
                 Object o[]={String.valueOf(rs.getDate("Tanggal")), rs.getString("ID"), rs.getString("Tipe"),
-                    rs.getString("Status"), rs.getInt("Harga"), rs.getString(name)};
+                    rs.getString("Status"), rs.getInt("Harga"), rs.getString("Klien"), rs.getString("Teknisi")};
                 tm.addRow(o);
             }
         } catch (SQLException ex) {

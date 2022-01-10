@@ -256,7 +256,7 @@ public class TambahService extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void callButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callButtonActionPerformed
-        Service svc = new Service(tipeComboBox.getSelectedItem().toString(), descTextField.getText(), "ongoing", 0, 0, user.getNamaLengkap(), jList1.getSelectedValue());
+        Service svc = new Service(tipeComboBox.getSelectedItem().toString(), descTextField.getText(), "ongoing", 0, 0, user.getNamaLengkap(), jList1.getSelectedValue(), null);
         long millis=System.currentTimeMillis();  
         java.sql.Date date=new java.sql.Date(millis);  
         try{
